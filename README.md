@@ -74,5 +74,5 @@ decompressed_data=ravdec.decompression("previously compressed data")
 #### Application of this module:
 
 It can be  used where the machine generates data at a very fast rate, that it became difficult for other algorithms to
-calculate the propability of a symbol, as data keeps on getting large, and is transmitted over the network with a much faster
+calculate the probability of a symbol, as data keeps on getting large, and is transmitted over the network with a much faster
 rate. In this case also, the above module, and algorithm gives the same compression ratio.
