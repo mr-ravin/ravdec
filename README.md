@@ -1,14 +1,9 @@
 # ravdec
 Ravdec is a module written in python, which is based on a Lossless Data Compression Algorithm designed by [Ravin Kumar](https://mr-ravin.github.io) on 19 September, 2016.This compression algorithm have a fixed compression ratio of 1.1429 in all possible cases, It accepts data of following format: alphabets,numbers, and symbols.It can be  used where the machine generates data at a very fast rate, that it became difficult for other algorithms to calculate the propability of a symbol, as data keeps on getting large, and is transmitted over the network with a much faster rate. In this case also,  the above module, and algorithm gives the same compression ratio.
 
-
 ### Ravdec- LossLess Data Compression
 
-Algorithm Designer, and Module Developer: [Ravin Kumar](https://mr-ravin.github.io)
-
-[Email](mr.ravin_kumar@hotmail.com)
-
-[linkedin](https://in.linkedin.com/in/ravinkumar21)
+##### Algorithm Designer, and Module Developer: [Ravin Kumar](https://mr-ravin.github.io)
 
 This compression algorithm have a fixed compression ratio of 1.1429 in all possible cases, It accepts data 
 of following format: alphabets,numbers, and symbols.
@@ -79,3 +74,5 @@ rate. In this case also, the above module, and algorithm gives the same compress
 ```
 pip install ravdec
 ```
+
+##### Note: This work can be used freely after providing citation and/or deserved credits to this work. Please use it at your own risk !!!
