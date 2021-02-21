@@ -21,10 +21,10 @@ NOTE- The data that is to be compressed should have length of multiple of 8.(i.e
 elemnts or 24...so on)
 
 - file_compression(filename) : 
-It is used to read data from a file, and create a compressed file wit extention of ".rav" 
+It is used to read data from a file, and create a compressed file with extention of ".rav" 
 
 - file_decompression(filename) :
-It is used to read data from a previously compressed file, and create a decompressed file wit extention of ".dec" 
+It is used to read data from a previously compressed file, and create a decompressed file with extention of ".dec" 
 
 
  #### Example:
