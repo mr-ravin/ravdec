@@ -60,7 +60,7 @@ compressed_data=ravdec.net_compression("ASDFGHJK")
 # note- data to be compressed should have length of multiple of 8.(i.e 8 elements, or 16 elemnts or 24...so on)
 # for decompression
 
-decompressed_data=ravdec.decompression("previously compressed data")
+decompressed_data=ravdec.net_decompression("previously compressed data")
 
 ```
 
