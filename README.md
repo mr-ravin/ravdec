@@ -75,6 +75,8 @@ rate. In this case also, the above module, and algorithm gives the same compress
 pip install ravdec
 ```
 
+#### Also visit RavdecJs: Javascript implementation of ravdec. [repository link](https://github.com/mr-ravin/ravdecjs)
+
 ```python
 Copyright (c) 2016 Ravin Kumar
 Website: https://mr-ravin.github.io
