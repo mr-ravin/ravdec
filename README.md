@@ -5,8 +5,6 @@ Ravdec is a module written in python, which is based on a Lossless Data Compress
 
 ##### Algorithm Designer, and Module Developer: [Ravin Kumar](https://mr-ravin.github.io)
 
-##### NPM Repository Link: https://www.npmjs.com/package/ravdecjs
-
 This compression algorithm have a fixed compression ratio of 1.1429 in all possible cases, It accepts data 
 of following format: alphabets, numbers, and symbols.
 Example: It can compress 1 GB to 896 MB.
