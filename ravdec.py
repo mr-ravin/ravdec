@@ -7,7 +7,7 @@ def file_compression(filename):
   wrt_file=open(fname,'w')
   cnt=0
   act_len=len(read_data)
-  multiple=act_len/8
+  multiple=int(act_len/8)
   binval=""
   for i in range(0,multiple):
     tmp=read_data[8*i:(8*i)+8]
@@ -18,13 +18,11 @@ def file_compression(filename):
       while len(tmp3)<7:
         tmp3='0'+tmp3
       binval=binval+tmp3
-    #print binval
   while cnt< len(binval):
     repl=binval[cnt:8+cnt]
     wrt_data=chr(int(repl,2))
     cnt=cnt+8
     wrt_file.write(wrt_data)
-  
   read_file.close()
   wrt_file.close()
 
@@ -37,7 +35,7 @@ def file_decompression(filename):
   wrt_file=open(fname,'w')
   cnt=0
   act_len=len(read_data)
-  multiple=act_len/7
+  multiple=int(act_len/7)
   binval=""
   for i in range(0,multiple):
     tmp=read_data[7*i:(7*i)+7]
@@ -48,8 +46,6 @@ def file_decompression(filename):
       while len(tmp3)<8:
         tmp3='0'+tmp3
       binval=binval+tmp3
-    #print binval
-    print len(binval)
   while cnt< len(binval):
     repl=binval[cnt:7+cnt]
     repl='0'+repl
@@ -63,7 +59,7 @@ def net_compression(read_data):
   return_data=""
   cnt=0
   act_len=len(read_data)
-  multiple=act_len/8
+  multiple=int(act_len/8)
   binval=""
   for i in range(0,multiple):
     tmp=read_data[8*i:(8*i)+8]
@@ -85,7 +81,7 @@ def net_decompression(read_data):
   return_data=""
   cnt=0
   act_len=len(read_data)
-  multiple=act_len/7
+  multiple=int(act_len/7)
   binval=""
   for i in range(0,multiple):
     tmp=read_data[7*i:(7*i)+7]
