@@ -29,22 +29,22 @@ Ravdec is a Python module implementing a **lossless data compression** algorithm
 ## ⏳ **Complexity Analysis**
 
 ### **1️⃣ `enforced_8char_input = True`**
-✅ **Time Complexity: O(n)**
-✅ **Fixed Compression Ratio (1.1429)**
-✅ **Ideal for continuously growing data**
+- ✅ **Time Complexity: O(n)**
+- ✅ **Fixed Compression Ratio (1.1429)**
+- ✅ **Ideal for continuously growing data**
 
-- **Direct 7-bit conversion per character**
-- **No padding calculations**
-- **Optimized for speed**
+- ✅ **Direct 7-bit conversion per character**
+- ✅ **No padding calculations**
+- ✅ **Optimized for speed**
 
 ### **2️⃣ `enforced_8char_input = False`**
-📌 **Time Complexity: O(n) (with minor overhead)**
-📌 **Compression ratio varies (~1.04 - 1.1429)**
-📌 **Needs Padding Overhead**
+- 📌 **Time Complexity: O(n) (with minor overhead)**
+- 📌 **Compression ratio varies (~1.04 - 1.1429)**
+- 📌 **Needs Padding Overhead**
 
-- **Direct 7-bit conversion per character**
-- **Padding calculation and storage overhead**
-- **Slower compared to enforced mode**
+- ✅ **Direct 7-bit conversion per character**
+- 📌 **Padding calculation and storage overhead**
+- 📌 **Slower compared to enforced mode**
 
 ### 📌 **Comparison Table**
 | Mode | Time Complexity | Compression Ratio | Padding Overhead | Best Use Case |
@@ -62,9 +62,9 @@ Ravdec is a Python module implementing a **lossless data compression** algorithm
 
 ---
 ## 🚀 **Features**
-✅ **Fixed compression ratio** up to **1.1429** for `enforced_8char_input=True`.
-✅ **Supports alphabets, numbers, and symbols**.
-✅ **Optimized for real-time and high-speed data transmission**.
+- ✅ **Fixed compression ratio** up to **1.1429** for `enforced_8char_input=True`.
+- ✅ **Supports alphabets, numbers, and symbols**.
+- ✅ **Optimized for real-time and high-speed data transmission**.
 
 ---
 ## 🛠️ **Functions**
