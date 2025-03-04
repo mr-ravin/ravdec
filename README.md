@@ -1,60 +1,88 @@
-# Ravdec - Lossless Data Compression
+# 📦 **Ravdec - Lossless Data Compression**
 
-Ravdec is a Python module implementing a lossless data compression algorithm designed by [Ravin Kumar](https://mr-ravin.github.io) on September 19, 2016. This algorithm is designed exclusively for textual data, including alphabets, numbers, and symbols. The algorithm offers two modes: 
-- When `enforced_8char_input=True`, the length of input data must be exactly divisible by 8, ensuring a **fixed compression ratio of 1.1429**.
+## 🔹 **Overview**
+Ravdec is a Python module implementing a **lossless data compression** algorithm designed by [Ravin Kumar](https://mr-ravin.github.io) on **September 19, 2016**. This algorithm is designed exclusively for **textual data**, including **alphabets, numbers, and symbols**. The algorithm offers two modes: 
+
+- When `enforced_8char_input=True`, the length of input data must be exactly divisible by **8**, ensuring a **fixed compression ratio of 1.1429**.
 - When `enforced_8char_input=False`, the compression ratio starts at **1.0435** for a **24-character input** (minimum required length) and increases with input size, approaching **1.1429** for larger inputs.
 
-## Development Details
+---
+## 🔧 **Development Details**
+- **👨‍💻 Developer:** [Ravin Kumar](https://mr-ravin.github.io)  
+- **📂 GitHub Repository:** [https://github.com/mr-ravin/ravdec/](https://github.com/mr-ravin/ravdec/)
+- **🌐 JavaScript Implementation:** [https://github.com/mr-ravin/ravdecjs/](https://github.com/mr-ravin/ravdecjs/)
 
-- **Developer:** [Ravin Kumar](https://mr-ravin.github.io)  
-- **GitHub Repository:** [https://github.com/mr-ravin/ravdec/](https://github.com/mr-ravin/ravdec/)
-- **GitHub Repository (Javascript Implementation):** [https://github.com/mr-ravin/ravdecjs/](https://github.com/mr-ravin/ravdecjs/)
+---
+## 📊 **Compression Ratio**
 
-## Compression Ratio
-
-### When `enforced_8char_input=False`
-- Compression ratio starts at **1.0435** for a **24-character length input** (minimum required length).
+### ✅ **When `enforced_8char_input=False`**
+- Compression ratio starts at **1.0435** for a **24-character input** (minimum required length).
 - Gradually increases, reaching **1.14** at **912-character length**, and further approaches **1.1429** as input size increases.
 - Ideal for handling variable-length text data while still achieving efficient compression.
 
-### When `enforced_8char_input=True`
-- Original data length must be exactly divisible by 8, ensuring a fixed compression ratio of **1.1429**.
-- Much faster, making it suitable for high-speed data compression.
-- Best for real-time systems where data is continuously growing and frequency-based algorithms are time-consuming.
+### 🚀 **When `enforced_8char_input=True`**
+- Original data length must be exactly divisible by **8**, ensuring a **fixed compression ratio of 1.1429**.
+- Much faster, making it suitable for **high-speed data compression**.
+- Best for **real-time systems** where data is continuously growing and **frequency-based algorithms are time-consuming**.
 
-## Use Cases
+---
+## ⏳ **Complexity Analysis**
 
-- **Compression of log files:** Reduces storage space while maintaining quick retrieval.
-- **High-speed data transmission:** Much faster when `enforced_8char_input=True`, ensuring rapid real-time processing.
-- **Fixed compression ratio scenarios:** Ideal for cases where predictable compression is necessary.
-- **Data archiving:** Stores text data efficiently without losing any information.
-- **Real-time data compression:** When data generation is extremely fast, `enforced_8char_input=True` ensures immediate compression without requiring frequency calculations.
+### **1️⃣ `enforced_8char_input = True`**
+✅ **Time Complexity: O(n)**
+✅ **Fixed Compression Ratio (1.1429)**
+✅ **Ideal for continuously growing data**
 
-## Features
+- **Direct 7-bit conversion per character**
+- **No padding calculations**
+- **Optimized for speed**
 
-- **Fixed compression ratio** of up to 1.1429 when `enforced_8char_input=True`, ensuring consistent and fast compression for real-time applications.
-- **Supports alphabets, numbers, and symbols**.
-- **Fast and efficient** for real-time and high-speed data transmission.
+### **2️⃣ `enforced_8char_input = False`**
+📌 **Time Complexity: O(n) (with minor overhead)**
+📌 **Compression ratio varies (~1.04 - 1.1429)**
+📌 **Needs Padding Overhead**
 
-## Functions
+- **Direct 7-bit conversion per character**
+- **Padding calculation and storage overhead**
+- **Slower compared to enforced mode**
 
-### `file_compression(filename, enforced_8char_input=False)`
+### 📌 **Comparison Table**
+| Mode | Time Complexity | Compression Ratio | Padding Overhead | Best Use Case |
+|------|---------------|-----------------|----------------|---------------|
+| `enforced_8char_input = True` | **O(n)** | **Fixed (1.1429)** | ❌ No Padding | **High-speed data streams** |
+| `enforced_8char_input = False` | **O(n) (with minor overhead)** | **Variable (~1.04 - 1.1429)** | ✅ Needs Padding | **General text compression** |
 
+---
+## 🎯 **Use Cases**
+- **📜 Log File Compression:** Reduces storage space while maintaining quick retrieval.
+- **⚡ High-Speed Data Transmission:** Faster processing with `enforced_8char_input=True`.
+- **📈 Fixed Compression Ratio Scenarios:** Ideal for predictable compression requirements.
+- **📁 Data Archiving:** Efficient text storage without losing information.
+- **⏳ Real-Time Compression:** `enforced_8char_input=True` ensures immediate compression without extra calculations.
+
+---
+## 🚀 **Features**
+✅ **Fixed compression ratio** up to **1.1429** for `enforced_8char_input=True`.
+✅ **Supports alphabets, numbers, and symbols**.
+✅ **Optimized for real-time and high-speed data transmission**.
+
+---
+## 🛠️ **Functions**
+
+### 📌 `file_compression(filename, enforced_8char_input=False)`
 Compresses a text file and saves the compressed data with the `.rdc` extension.
 
-### `file_decompression(filename, enforced_8char_input=False)`
-
+### 📌 `file_decompression(filename, enforced_8char_input=False)`
 Decompresses a previously compressed `.rdc` file back to its original form.
 
-### `compression(read_data, enforced_8char_input=False)`
+### 📌 `compression(read_data, enforced_8char_input=False)`
+Compresses a string using **7-bit storage**, returning a compressed string.
 
-Compresses a string using 7-bit storage, returning a compressed string.
-
-### `decompression(compressed_text, enforced_8char_input=False)`
-
+### 📌 `decompression(compressed_text, enforced_8char_input=False)`
 Decompresses a compressed string back to its original form.
 
-## Installation
+---
+## 📥 **Installation**
 
 Install using pip:
 
@@ -62,24 +90,10 @@ Install using pip:
 pip install ravdec
 ```
 
-## Example Usage
+---
+## 🔄 **Example Usage**
 
-### Compressing and Decompressing Files
-
-```python
-import ravdec
-
-filename = "inputfile.txt"
-
-# Compress a file
-ravdec.file_compression(filename)
-
-# Decompress the previously compressed file
-ravdec.file_decompression("inputfile.txt.rdc")
-```
-
-### Compressing and Decompressing Text
-
+### ✍ **Compressing and Decompressing Text**
 ```python
 import ravdec
 
@@ -93,8 +107,22 @@ decompressed_data = ravdec.decompression(compressed_data, enforced_8char_input=T
 print(decompressed_data)  # Output: "Ravdec !"
 ```
 
-## License
+### 🗂️ **Compressing and Decompressing Files**
+```python
+import ravdec
 
+origianl_filename = "inputfile.txt"
+compressed_filename = filename+".rdc"
+
+# Compress a file
+ravdec.file_compression(original_filename)
+
+# Decompress the previously compressed file
+ravdec.file_decompression(compressed_filename)
+```
+
+---
+## 📜 **Copyright License**
 ```python
 Copyright (c) 2016 Ravin Kumar
 Website: https://mr-ravin.github.io
@@ -111,3 +139,4 @@ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR I
 WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR 
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, 
 ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+```
