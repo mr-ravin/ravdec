@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="ravdec",
-    version="3.2",
+    version="3.3",
     author="Ravin Kumar",
     author_email="mr.ravin_kumar@hotmail.com",  # Make sure this is correct
     description="Ravdec - Lossless Data Compression",
