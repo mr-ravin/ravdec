@@ -89,6 +89,12 @@ Install using pip:
 ```sh
 pip install ravdec
 ```
+or,
+
+```sh
+pip install git+https://github.com/mr-ravin/ravdec.git
+```
+
 
 ---
 ## 🔄 **Example Usage**
@@ -97,28 +103,45 @@ pip install ravdec
 ```python
 import ravdec
 
-data = "Ravdec !"  # Length of data is divisible by 8
+# When enforced_8char_input=True
+
+data = 'Ravdec !'  # Length of data is divisible by 8
 
 # Compress a string with enforced_8char_input=True
 compressed_data = ravdec.compression(data, enforced_8char_input=True) # compressed_data is '¥\x87¶L¸Ð!'
 
 # Decompress the string
 decompressed_data = ravdec.decompression(compressed_data, enforced_8char_input=True)
-print(decompressed_data)  # Output: "Ravdec !"
+print(compressed_data)    # Output: '¥\x87¶L¸Ð!'
+print(decompressed_data)  # Output: 'Ravdec !'
+
+
+
+# When enforced_8char_input=False (and input data has length >= 24)
+
+data = 'R'*25
+# Compress a string with enforced_8char_input=False
+compressed_data = ravdec.compression(data) # by default enforced_8char_input=False
+
+# Decompress the string
+decompressed_data = ravdec.decompression(compressed_data) # by default enforced_8char_input=False
+print(compressed_data)
+print(decompressed_data)
+
 ```
 
 ### 🗂️ **Compressing and Decompressing Files**
 ```python
 import ravdec
 
-origianl_filename = "inputfile.txt"
+original_filename = "inputfile.txt"
 compressed_filename = filename+".rdc"
 
 # Compress a file
-ravdec.file_compression(original_filename)
+ravdec.file_compression(original_filename) # saves compressed data in compressed_filename
 
 # Decompress the previously compressed file
-ravdec.file_decompression(compressed_filename)
+ravdec.file_decompression(compressed_filename) # saves the decompressed data in original_filename (got after removing '.rdc' from compressed_filename)
 ```
 
 ---
