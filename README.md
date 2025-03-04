@@ -95,6 +95,10 @@ or,
 pip install git+https://github.com/mr-ravin/ravdec.git
 ```
 
+---
+### 📌 **Dependencies:**
+- Python >= 3.7
+- No additional dependencies required
 
 ---
 ## 🔄 **Example Usage**
