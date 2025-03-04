@@ -1,76 +1,99 @@
-# ravdec
-Ravdec is a module written in python, which is based on a Lossless Data Compression Algorithm designed by [Ravin Kumar](https://mr-ravin.github.io) on 19 September, 2016. This compression algorithm have a fixed compression ratio of 1.1429 in all possible cases, It accepts data of following format: alphabets, numbers, and symbols. It can be  used where the machine generates data at a very fast rate, that it became difficult for other algorithms to calculate the propability of a symbol, as data keeps on getting large, and is transmitted over the network with a much faster rate. In this case also, the above module, and algorithm gives the same compression ratio.
+# Ravdec - Lossless Data Compression
 
-### Ravdec- LossLess Data Compression
+Ravdec is a Python module implementing a lossless data compression algorithm designed by [Ravin Kumar](https://mr-ravin.github.io) on September 19, 2016. This algorithm is designed exclusively for textual data, including alphabets, numbers, and symbols. The algorithm offers two modes: 
+- When `enforced_8char_input=True`, the length of input data must be exactly divisible by 8, ensuring a **fixed compression ratio of 1.1429**.
+- When `enforced_8char_input=False`, the compression ratio starts at **1.0435** for a **24-character input** (minimum required length) and increases with input size, approaching **1.1429** for larger inputs.
 
-##### Algorithm Designer, and Module Developer: [Ravin Kumar](https://mr-ravin.github.io)
+## Development Details
 
-This compression algorithm have a fixed compression ratio of 1.1429 in all possible cases, It accepts data of following format: alphabets, numbers, and symbols.
-Example: It can compress 1 GB to 896 MB.
+- **Developer:** [Ravin Kumar](https://mr-ravin.github.io)  
+- **GitHub Repository:** [https://github.com/mr-ravin/ravdec/](https://github.com/mr-ravin/ravdec/)
+- **GitHub Repository (Javascript Implementation):** [https://github.com/mr-ravin/ravdecjs/](https://github.com/mr-ravin/ravdecjs/)
 
-### Application of Ravdec 
+## Compression Ratio
 
-It can be  used where the machine generates data at a very fast rate, that it became difficult for other algorithms to calculate the propability of a symbol, as data keeps on getting large, and is transmitted over the network with a much faster rate. In this case also, the above module, and algorithm gives the same compression ratio.
+### When `enforced_8char_input=False`
+- Compression ratio starts at **1.0435** for a **24-character length input** (minimum required length).
+- Gradually increases, reaching **1.14** at **912-character length**, and further approaches **1.1429** as input size increases.
+- Ideal for handling variable-length text data while still achieving efficient compression.
 
-NOTE- The data that is to be compressed should have length of multiple of 8.(i.e 8 elements, or 16
-elemnts or 24...so on)
+### When `enforced_8char_input=True`
+- Original data length must be exactly divisible by 8, ensuring a fixed compression ratio of **1.1429**.
+- Much faster, making it suitable for high-speed data compression.
+- Best for real-time systems where data is continuously growing and frequency-based algorithms are time-consuming.
 
-- file_compression(filename) : 
-It is used to read data from a file, and create a compressed file with extention of ".rav" 
+## Use Cases
 
-- file_decompression(filename) :
-It is used to read data from a previously compressed file, and create a decompressed file with extention of ".dec" 
+- **Compression of log files:** Reduces storage space while maintaining quick retrieval.
+- **High-speed data transmission:** Much faster when `enforced_8char_input=True`, ensuring rapid real-time processing.
+- **Fixed compression ratio scenarios:** Ideal for cases where predictable compression is necessary.
+- **Data archiving:** Stores text data efficiently without losing any information.
+- **Real-time data compression:** When data generation is extremely fast, `enforced_8char_input=True` ensures immediate compression without requiring frequency calculations.
 
+## Features
 
- #### Example:
- 
- ```python
- 
- import ravdec 
+- **Fixed compression ratio** of up to 1.1429 when `enforced_8char_input=True`, ensuring consistent and fast compression for real-time applications.
+- **Supports alphabets, numbers, and symbols**.
+- **Fast and efficient** for real-time and high-speed data transmission.
 
- # to compress the file have elements of multiple of 8.
- ravdec.file_compression("filename.txt")
+## Functions
 
- # to decompress the previously compressed file.
- ravdec.file_decompression("filename.rav")
+### `file_compression(filename, enforced_8char_input=False)`
 
- ```
- 
-- net_compression("data to be compressed of length of multiple of 8 ") - To compress the  original data to transmit, that is
-   needed to be  transmitted.
-- net_decompression(" previously compressed data")  - To decompress the previously compressed data, that is received.
+Compresses a text file and saves the compressed data with the `.rdc` extension.
 
-It is used where the machine generates data at a very fast rate, that it became difficult for other algorithms to calculate the
-propability of a symbol, as data keeps on getting large, and is transmitted over the network with a much faster rate.
+### `file_decompression(filename, enforced_8char_input=False)`
 
-#### Example:
+Decompresses a previously compressed `.rdc` file back to its original form.
 
-```
+### `compression(read_data, enforced_8char_input=False)`
 
-import ravdec
+Compresses a string using 7-bit storage, returning a compressed string.
 
-# for compression
-compressed_data=ravdec.net_compression("ASDFGHJK")
+### `decompression(compressed_text, enforced_8char_input=False)`
 
-# note- data to be compressed should have length of multiple of 8.(i.e 8 elements, or 16 elemnts or 24...so on)
-# for decompression
+Decompresses a compressed string back to its original form.
 
-decompressed_data=ravdec.net_decompression("previously compressed data")
+## Installation
 
-```
+Install using pip:
 
-#### Application of this module:
-
-It can be  used where the machine generates data at a very fast rate, that it became difficult for other algorithms to
-calculate the probability of a symbol, as data keeps on getting large, and is transmitted over the network with a much faster
-rate. In this case also, the above module, and algorithm gives the same compression ratio.
-
-#### Installation using pip:
-```
+```sh
 pip install ravdec
 ```
 
-#### Also visit RavdecJs: Javascript implementation of ravdec. [repository link](https://github.com/mr-ravin/ravdecjs)
+## Example Usage
+
+### Compressing and Decompressing Files
+
+```python
+import ravdec
+
+filename = "inputfile.txt"
+
+# Compress a file
+ravdec.file_compression(filename)
+
+# Decompress the previously compressed file
+ravdec.file_decompression("inputfile.txt.rdc")
+```
+
+### Compressing and Decompressing Text
+
+```python
+import ravdec
+
+data = "Ravdec !"  # Length of data is divisible by 8
+
+# Compress a string with enforced_8char_input=True
+compressed_data = ravdec.compression(data, enforced_8char_input=True) # compressed_data is '¥\x87¶L¸Ð!'
+
+# Decompress the string
+decompressed_data = ravdec.decompression(compressed_data, enforced_8char_input=True)
+print(decompressed_data)  # Output: "Ravdec !"
+```
+
+## License
 
 ```python
 Copyright (c) 2016 Ravin Kumar
@@ -88,4 +111,3 @@ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR I
 WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR 
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, 
 ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-```
